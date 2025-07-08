@@ -1,4 +1,6 @@
- #include <stdio.h>
+
+
+#include <stdio.h>
 #include <stdlib.h>
 #include <cstring>
 
@@ -6,6 +8,10 @@
 #include "task.h"
 #include "queue.h"
 #include "timers.h"
+
+#include "GeneralConfig.h"
+
+#if USE_FTP == 1
 
 #include "FTP_ServerProcess.hpp"
 #include "Ethernet.hpp"
@@ -1234,3 +1240,5 @@ void FtpClientProcess_c::HandleDELE(char* arg)
   }
   delete[] fileName;
 }
+
+#endif

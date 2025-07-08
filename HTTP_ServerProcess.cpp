@@ -1,3 +1,6 @@
+#if USE_HTTP == 1
+
+
  #include <stdio.h>
 #include <stdlib.h>
 #include <cstring>
@@ -445,4 +448,4 @@ void HttpInterface_c::SendAnswer(SocketTcp_c* socket,client_http_answer_et answe
   socket->Send(dataBuf,strlen((char*)dataBuf),10000);
 }
   
-
+#endif

@@ -71,7 +71,7 @@ class Ethernet_c
 };
 
  #if ETH_STATS == 1
-#include "commandHandler.hpp"
+#include "CommandHandler.hpp"
 
 class Com_ethgetstat : public Command_c
 {

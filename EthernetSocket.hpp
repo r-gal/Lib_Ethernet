@@ -5,7 +5,7 @@
 #include "EthernetCommon.hpp"
 #include "EthernetIp.hpp"
 
-#include "commandHandler.hpp"
+#include "CommandHandler.hpp"
 
 class Socket_c;
 struct SocketEvent_st

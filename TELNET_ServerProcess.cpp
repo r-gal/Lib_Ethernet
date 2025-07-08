@@ -1,3 +1,5 @@
+ #if USE_TELNET == 1
+ 
  #include <stdio.h>
 #include <stdlib.h>
 #include <cstring>
@@ -14,7 +16,7 @@
 #include "FileSystem.hpp"
 #endif
 
-#include "commandHandler.hpp"
+#include "CommandHandler.hpp"
 
 #include "EthernetTcp.hpp"
 /*
@@ -252,3 +254,5 @@ void TelnetClientProcess_c::Close(void)
   #endif
   vTaskDelete(NULL);
 }
+
+#endif

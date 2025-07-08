@@ -1,7 +1,7 @@
 #ifndef ETHERNETIPCONFIG_H
 #define ETHERNETIPCONFIG_H
 
-#include "commandHandler.hpp"
+#include "CommandHandler.hpp"
 
 struct ipConf_st
 {
