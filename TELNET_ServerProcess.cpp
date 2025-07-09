@@ -1,4 +1,4 @@
- #if USE_TELNET == 1
+
  
  #include <stdio.h>
 #include <stdlib.h>
@@ -8,6 +8,10 @@
 #include "task.h"
 #include "queue.h"
 #include "timers.h"
+
+#include "GeneralConfig.h"
+
+ #if USE_TELNET == 1
 
 #include "TELNET_ServerProcess.hpp"
 #include "Ethernet.hpp"

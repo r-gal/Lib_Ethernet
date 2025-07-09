@@ -4,7 +4,7 @@
 #include "TcpDataDef.hpp"
 #include "EthernetCommon.hpp"
 #include "EthernetMac.hpp"
-#include "commandHandler.hpp"
+#include "CommandHandler.hpp"
 
 #define ARP_MAX_AGE 200
 

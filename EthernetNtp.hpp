@@ -7,7 +7,7 @@
 //#include "EthernetIp.hpp"
 #include "EthernetUdp.hpp"
 
-#include "commandHandler.hpp"
+#include "CommandHandler.hpp"
 
 #define NTP_PORT 123
 
