@@ -10,6 +10,7 @@
 #include "timers.h"
 
 #include "GeneralConfig.h"
+#include "EthernetConfig.hpp"
 
 #if USE_FTP == 1
 

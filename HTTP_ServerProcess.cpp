@@ -1,4 +1,4 @@
-#if USE_HTTP == 1
+
 
 
  #include <stdio.h>
@@ -9,6 +9,11 @@
 #include "task.h"
 #include "queue.h"
 #include "timers.h"
+
+#include "GeneralConfig.h"
+#include "EthernetConfig.hpp"
+
+#if USE_HTTP == 1
 
 #include "HTTP_ServerProcess.hpp"
 #include "Ethernet.hpp"

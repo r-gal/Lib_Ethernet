@@ -1,6 +1,6 @@
 
  
- #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <cstring>
 
@@ -10,8 +10,9 @@
 #include "timers.h"
 
 #include "GeneralConfig.h"
+#include "EthernetConfig.hpp"
 
- #if USE_TELNET == 1
+#if USE_TELNET == 1
 
 #include "TELNET_ServerProcess.hpp"
 #include "Ethernet.hpp"
