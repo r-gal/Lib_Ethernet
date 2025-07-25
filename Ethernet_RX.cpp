@@ -113,7 +113,7 @@ EthernetRxProcess_c::EthernetRxProcess_c(void)
 void EthernetRxProcess_c::MainRx( void )
 {
   uint32_t ulISREvents = 0U;
-  BaseType_t xResult;
+
   void* pAppBuff;
   #if DEBUG_PROCESS > 0
   printf("start Main RX process\n");
@@ -190,8 +190,9 @@ void EthernetRxProcess_c::MainRx( void )
 
       if( ( ulISREvents & EMAC_IF_ERR_EVENT ) != 0 )
       {
-        uint32_t errorCode = heth_p->DMAErrorCode;
+
         #if DEBUG_ETHERNET > 0
+    	uint32_t errorCode = heth_p->DMAErrorCode;
         printf("Ethernet Error interrupt 0x%08X\n",errorCode);
         #endif
 
@@ -262,9 +263,6 @@ bool EthernetRxProcess_c::EarlyCheck( uint8_t * pucEthernetBuffer, uint32_t data
 
 bool EthernetRxProcess_c::InterfaceInit(void)
 {
-
-  /* Assign Rx memory buffers to a DMA Rx descriptor */
-  ETH_DMADescTypeDef * pxDMADescriptor;
 
 
   return true;

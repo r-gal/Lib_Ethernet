@@ -237,7 +237,7 @@ void IpConfig_c::UseAdministeredConfiguration(void)
 
 void IpConfig_c::PrintIp(char* strBuffer,uint32_t ip, char* name)
 {
-  sprintf(strBuffer,"%s%d.%d.%d.%d",name,(ip>>24)&0xFF,(ip>>16)&0xFF,(ip>>8)&0xFF,(ip)&0xFF);
+  sprintf(strBuffer,"%s%d.%d.%d.%d",name,(uint8_t)((ip>>24)&0xFF),(uint8_t)((ip>>16)&0xFF),(uint8_t)((ip>>8)&0xFF),(uint8_t)((ip)&0xFF));
 
 
 }

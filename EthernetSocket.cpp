@@ -212,7 +212,7 @@ comResp_et Com_socketlist::Handle(CommandData_st* comData)
 
   while(pSocket != nullptr)
   {
-    bool cont = true;
+
     if(pSocket->protocol == IP_PROTOCOL_UDP)
     {
       sprintf(strBuf, "UDP, PORT=%d ",pSocket->port);
@@ -226,12 +226,12 @@ comResp_et Com_socketlist::Handle(CommandData_st* comData)
     else if(pSocket->protocol == IP_PROTOCOL_ICMP)
     {
       sprintf(strBuf, "ICMP");
-      cont = false;
+
     }
     else
     {
       sprintf(strBuf, "UNN");
-      cont = false;
+
     }
     strcat(strBuf,"\n");
     Print(comData->commandHandler,strBuf);

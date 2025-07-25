@@ -109,7 +109,6 @@ void DHCP_c::DeinitStart(void)
 
 void DHCP_c::SendFrame(uint8_t oper)
 {
- uint16_t length = 0;
 
   uint8_t* packet_p = new uint8_t[1024];
   Packet_st* packet = (Packet_st*) packet_p;
@@ -163,18 +162,18 @@ uint16_t  DHCP_c::CreateMessage(DhcpFrame_st* frame_p,uint8_t oper)
   {OPT_DHCP_MSG_TYPE,1,{DHCP_DISCOVER}},
   {OPT_HOST_NAME,8,"Osc_v2  "},
   //{OPT_REQ_IP,4,{0,0,0,0}},
-  {OPT_REQ_IP,4,{(wIp>>24)& 0xFF,(wIp>>16)& 0xFF,(wIp>>8)& 0xFF,(wIp) & 0xFF}},
+  {OPT_REQ_IP,4,{(uint8_t)((wIp>>24)& 0xFF),(uint8_t)((wIp>>16)& 0xFF),(uint8_t)((wIp>>8)& 0xFF),(uint8_t)((wIp) & 0xFF)}},
   {OPT_REQ_PARAM,3,{OPT_SUBNET_MASK,OPT_GATEWAY,OPT_DNS_SERVER}},
-  {OPT_END,0,NULL},
+  {OPT_END,0,{}},
   };
 
   dhcpOptions_st optionsRequest[] = 
   { 
   {OPT_DHCP_MSG_TYPE,1,{DHCP_REQUEST}},
   {OPT_HOST_NAME,8,"Osc_v2  "},
-  {OPT_REQ_IP,4,{(givenIp>>24)& 0xFF,(givenIp>>16)& 0xFF,(givenIp>>8)& 0xFF,(givenIp) & 0xFF}},
-  {OPT_DHCP_SERVER,4, {(dhcpServerIp>>24)& 0xFF,(dhcpServerIp>>16)& 0xFF,(dhcpServerIp>>8)& 0xFF,(dhcpServerIp) & 0xFF}},
-  {OPT_END,0,NULL},
+  {OPT_REQ_IP,4,{(uint8_t)((givenIp>>24)& 0xFF),(uint8_t)((givenIp>>16)& 0xFF),(uint8_t)((givenIp>>8)& 0xFF),(uint8_t)((givenIp) & 0xFF)}},
+  {OPT_DHCP_SERVER,4, {(uint8_t)((dhcpServerIp>>24)& 0xFF),(uint8_t)((dhcpServerIp>>16)& 0xFF),(uint8_t)((dhcpServerIp>>8)& 0xFF),(uint8_t)((dhcpServerIp) & 0xFF)}},
+  {OPT_END,0,{}},
   };
 
   if(oper == DHCP_DISCOVER)
@@ -249,13 +248,13 @@ void DHCP_c::HandlePacket(uint8_t* packet_p,uint16_t packetSize)
 
 
     uint32_t gateway;
-    bool gatewayValid = false;
+    //bool gatewayValid = false;
     uint32_t subnetMask;
-    bool subnetMaskValid = false;
+    //bool subnetMaskValid = false;
     uint32_t dnsServer;
-    bool dnsServerValid = false;
+    //bool dnsServerValid = false;
     uint32_t dhcpServer;
-    bool dhcpServerValid = false;
+    //bool dhcpServerValid = false;
     uint32_t leaseTime;
     bool leaseTimeValid = false;
     uint8_t oper;
@@ -310,7 +309,7 @@ void DHCP_c::HandlePacket(uint8_t* packet_p,uint16_t packetSize)
 
           //Ip2Str(buf,subnetMask);
           //printf("SUBNET=%s\n",buf);
-          subnetMaskValid = true;
+          //subnetMaskValid = true;
 
         }
         else if(optCode == OPT_GATEWAY)
@@ -318,7 +317,7 @@ void DHCP_c::HandlePacket(uint8_t* packet_p,uint16_t packetSize)
           gateway = (optBuf[0] << 24) | (optBuf[1] << 16) | (optBuf[2] << 8) | optBuf[3];
           //Ip2Str(buf,gateway);
           //printf("GATEWAY=%s\n",buf);
-          gatewayValid = true;
+          //gatewayValid = true;
 
         }
         else if(optCode == OPT_DNS_SERVER)
@@ -326,14 +325,14 @@ void DHCP_c::HandlePacket(uint8_t* packet_p,uint16_t packetSize)
           dnsServer = (optBuf[0] << 24) | (optBuf[1] << 16) | (optBuf[2] << 8) | optBuf[3];
           //Ip2Str(buf,dnsServer);
           //printf("DNS_SERVER=%s\n",buf);
-          dnsServerValid = true;
+          //dnsServerValid = true;
         }
         else if(optCode == OPT_DHCP_SERVER)
         {
           dhcpServer = (optBuf[0] << 24) | (optBuf[1] << 16) | (optBuf[2] << 8) | optBuf[3];
           //Ip2Str(buf,dhcpServer);
           //printf("DHCP_SERVER=%s\n",buf);
-          dhcpServerValid = true;
+          //dhcpServerValid = true;
           dhcpServerIp = dhcpServer;
         }
         else if(optCode == OPT_LEASETIME)

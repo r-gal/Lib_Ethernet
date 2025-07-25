@@ -30,6 +30,12 @@ class Socket_c : public IP_c
   
 
   public:
+
+  const uint16_t port;
+  const uint8_t protocol;
+
+
+
   QueueHandle_t rxEventQueue;
 
   Socket_c* next;
@@ -47,11 +53,10 @@ class Socket_c : public IP_c
   uint8_t childCnt;
   uint8_t childMax;
   
-  const uint8_t protocol;
-  const uint16_t port;
+
 
   Socket_c(uint16_t port,uint8_t protocol_,Socket_c* parentSocket);
-  ~Socket_c(void);
+  virtual ~Socket_c(void);
 
   void AddNewSocketToList(void);
 

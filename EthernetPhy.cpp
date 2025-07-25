@@ -36,9 +36,8 @@ void EthernetPhy_c::Init(void)
   
 
   uint32_t ulConfig, ulAdvertise;
-    BaseType_t xPhyIndex;
 
-    /* Set advertise register. */
+  /* Set advertise register. */
     if( ( phySpeed == ( uint8_t ) PHY_SPEED_AUTO ) && ( phyDuplex == ( uint8_t ) PHY_DUPLEX_AUTO ) )
     {
         ulAdvertise = ADVERTISE_ALL;
@@ -294,7 +293,8 @@ bool EthernetPhy_c::PhyReset( void)
 
 bool EthernetPhy_c::PhyStartAutoNegotiation(void)
 {
-  uint32_t ulPHYLinkStatus, ulRegValue;
+  uint32_t ulPHYLinkStatus = 0;
+  uint32_t ulRegValue = 0;;
   TickType_t xRemainingTime;
   TimeOut_t xTimer;
   bool done;
@@ -415,7 +415,6 @@ LINK_EVENT_et EthernetPhy_c::CheckLinkStatus(void)
     #endif
     actLinkStatus = newLinkStatus;
 
-    uint8_t r;
     if(actLinkStatus == 1)
     {
       resp = LINK_CHANGED_UP;

@@ -93,7 +93,7 @@ void TelnetProcess_c::main(void)
           xSemaphoreGive(clientListSemaphore);
 
 
-          TelnetClientProcess_c* newClientTask = new TelnetClientProcess_c(clientSocket,idx,this);
+          new TelnetClientProcess_c(clientSocket,idx,this);
 
         }
         else if(event.code == SocketEvent_st::SOCKET_EVENT_DELCLIENT)
@@ -213,7 +213,6 @@ void TelnetClientProcess_c::MainLoop(void)
           }
           else
           {
-            int8_t* sBuf = (int8_t*)cRxedData;
             optionsReceived = true;
             char* buf = new char[32];
             sprintf(buf,TELNET_WELCOME_STRING);

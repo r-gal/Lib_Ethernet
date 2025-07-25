@@ -77,10 +77,9 @@ void MDNS_c::HandlePacket(uint8_t* packet_p,uint16_t packetSize)
 
         uint32_t ip = IP_c::ipConfig_p->GetIp();
 
-        uint8_t* msgPtr = message_p->payload;
         
         char ipStr[32];
-        sprintf(ipStr,".%d.%d.%d.%d.in-addr.arpa",(ip>>24) & 0xFF, (ip>>16) & 0xFF, (ip>>8) & 0xFF, (ip>>0) & 0xFF);
+        sprintf(ipStr,".%d.%d.%d.%d.in-addr.arpa",(uint8_t)((ip>>24) & 0xFF), (uint8_t)((ip>>16) & 0xFF), (uint8_t)((ip>>8) & 0xFF), (uint8_t)( (ip>>0) & 0xFF));
 
         uint8_t ipStrLen = strlen(ipStr)+1;
                

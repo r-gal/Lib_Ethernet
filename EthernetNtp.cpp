@@ -107,8 +107,6 @@ void NTP_c::SendRequest(uint8_t* gatewayMac, uint32_t ntpServerIp)
   printf("Send NTP packet \n");
   #endif
 
-    uint16_t length = 0;
-
   uint8_t* packet_p = new uint8_t[1024];
   Packet_st* packet = (Packet_st*) packet_p;
 
@@ -277,7 +275,7 @@ comResp_et Com_ntp::Handle(CommandData_st* comData)
 
     uint32_t ip = NTP_c::GetServerIp(i);
 
-    IpConfig_c::PrintIp(strPtr,ip,"");
+    IpConfig_c::PrintIp(strPtr,ip,(char*)"");
 
     strPtr += strlen(strPtr);
 

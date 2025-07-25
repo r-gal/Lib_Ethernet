@@ -80,7 +80,6 @@ void Ethernet_c::BuffersInit(void)
 
 bool Ethernet_c::InterfaceInitialise( void )
 {
-  HAL_StatusTypeDef xHalEthInitStatus;
 
   if( xMacInitStatus == eMACInit )
   {

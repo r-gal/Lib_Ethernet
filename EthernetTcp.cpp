@@ -204,7 +204,7 @@ void SocketTcp_c::HandleRoutedPacket(uint8_t* packet_p,uint16_t packetSize)
 
        txWindow.UpdateWindowSize(ntohs(packet->tcpHeader.windowSize));
 
-       uint32_t optVal = GetOption(packet,TCP_OPTION_WINSCALE);
+       int optVal = GetOption(packet,TCP_OPTION_WINSCALE);
        if(optVal != -1)
        { 
          txWindow.SetWindowScale(optVal);
@@ -1145,7 +1145,7 @@ void SocketTcp_c::PrintInfo(char* buffer)
 
   sprintf(buffer,"STATE=%s CLIENT=", tcpSocketStateStr[state]);
 
-  IpConfig_c::PrintIp(buffer+strlen(buffer),clientIp,"");
+  IpConfig_c::PrintIp(buffer+strlen(buffer),clientIp,(char*)"");
 
   sprintf(buffer+strlen(buffer),"/%d",clientPort);
 

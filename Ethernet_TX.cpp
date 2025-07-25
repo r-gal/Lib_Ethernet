@@ -105,9 +105,9 @@ bool EthernetTxProcess_c::SendBuffer(uint8_t* buffer, uint32_t dataSize,uint8_t*
       ownPtr->TxConfig.TxBuffer->next->len = dataSize2;
     }
 
-    HAL_StatusTypeDef result;
 
-    result = HAL_ETH_Transmit_IT(ownPtr->heth_p, &ownPtr->TxConfig);
+
+    HAL_ETH_Transmit_IT(ownPtr->heth_p, &ownPtr->TxConfig);
 
     /* Wait for a new event or a time-out. */
     if(xTaskNotifyWait( 0U,                /* ulBitsToClearOnEntry */
@@ -122,35 +122,7 @@ bool EthernetTxProcess_c::SendBuffer(uint8_t* buffer, uint32_t dataSize,uint8_t*
       /* notification timeout */
       success =  false;
     }
-  /*  char protStr[8];
-    switch( pxProtPacket->xTCPPacket.xEthernetHeader.usFrameType )
-    {
-        case ipARP_FRAME_TYPE:
-             strcpy(protStr,"ARP");
-             break;
 
-        case ipIPv4_FRAME_TYPE:
-             switch( pxProtPacket->xTCPPacket.xIPHeader.ucProtocol )
-             {
-               case 1:
-                 strcpy(protStr,"IP_ICMP");
-                 break;
-               default:
-                 strcpy(protStr,"IP_OTH");
-                 break; 
-
-
-
-             }
-             break;
-
-        default:
-             strcpy(protStr,"OTH");
-             break;
-    }
-
-    printf("TX end, res=%d, suc=%d, size=%d, prot=%s\n",result,success,pxNetworkBuffer->xDataLength,protStr);
-*/
 
     xSemaphoreGive(ownPtr->xTXDescriptorSemaphore);
   }
