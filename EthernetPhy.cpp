@@ -217,7 +217,7 @@ bool EthernetPhy_c::PhyReset( void)
 
 
     /* Set the RESET bits high. */
-#ifdef ETHERNET_NOT_USE_RESET
+#ifdef ETHERNET_USE_RESET
     HAL_GPIO_WritePin(ETH_RESET_GPIO_Port,ETH_RESET_Pin,GPIO_PIN_RESET);
    vTaskDelay( pdMS_TO_TICKS( PHY_SHORT_DELAY_MS ) );
 
